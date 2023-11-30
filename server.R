@@ -32,7 +32,7 @@ myserver <- function(input, output, session) {
                 y = ~numTrips,
                 color = ~WeekEnd,
                 type = 'bar') %>% 
-          layout(barmode = 'stack')
+          layout(barmode = 'stack', height = input$dimension[2]*0.6)
       })
       
       #frequent trips
