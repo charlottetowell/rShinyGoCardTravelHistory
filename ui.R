@@ -1,7 +1,7 @@
 library(plotly)
 library(DT)
 
-myUR <- fluidPage(
+myUI <- fluidPage(
   style = "background-color: #F9F6EE;",
   
   title = "Go Card Travel History",
@@ -44,7 +44,7 @@ myUR <- fluidPage(
            fluidRow(
              column(9,
                     #frequent trips table
-                    DT::dataTableOutput("frequentTrips"),style = "height:500px; overflow-y: scroll;overflow-x: scroll;"
+                    DT::dataTableOutput("frequentTrips"),style = "overflow-y: scroll;overflow-x: scroll;font-size:80%"
              ),
              column(3,
                     #avg daily fare table (by day of week)

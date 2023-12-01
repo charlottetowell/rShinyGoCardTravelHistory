@@ -15,6 +15,7 @@ myserver <- function(input, output, session) {
   
   data <- reactiveVal()
   
+  #when submit button pressed
   observeEvent(
     eventExpr = input[["submit_file"]],
     handlerExpr = {
