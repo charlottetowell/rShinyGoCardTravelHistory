@@ -32,11 +32,17 @@ myserver <- function(input, output, session) {
                 y = ~numTrips,
                 color = ~WeekEnd,
                 type = 'bar') %>% 
-          layout(barmode = 'stack', height = input$dimension[2]*0.6)
+          layout(barmode = 'stack',
+                 height = input$dimension[2]*0.4,
+                 paper_bgcolor='rgba(0,0,0,0)',
+                 plot_bgcolor='rgba(0,0,0,0)',
+                 title="Trips per week",
+                 xaxis = list(title = ""),
+                 yaxis = list(title = ""))
       })
       
       #frequent trips
-      output$frequentTrips <- renderTable({
+      output$frequentTrips <- renderDataTable({
         data() %>%
           group_by(From, To) %>% 
           summarize(
@@ -44,8 +50,9 @@ myserver <- function(input, output, session) {
             ,ModeOfTransport = first(ModeOfTransport)
             ,AvgTripDuration = round(mean(TripDuration), 2)
           ) %>%
-          arrange(desc(numTrips))
+          arrange(desc(numTrips)) 
       })
+      
       
       # Avg Fares by Day Of Week
       output$AvgDailyFare <- renderTable({
@@ -67,9 +74,23 @@ myserver <- function(input, output, session) {
       })
       
       #modes of transport pie chart
-      pieModeOfTransport = table(data()$ModeOfTransport) 
-      pie_labels <- paste0(names(pieModeOfTransport), ": ", round(100 * pieModeOfTransport/sum(pieModeOfTransport), 2), "% (", pieModeOfTransport, ")")
-      output$modesofTransportPie <- renderPlot({pie(pieModeOfTransport, labels=pie_labels)})
+      pieModeOfTransport = data() %>% 
+        group_by(ModeOfTransport) %>%
+        summarize(
+          numTrips = n_distinct(index)
+        )
+      output$modesofTransportPie <- renderPlotly({
+        plot_ly(pieModeOfTransport,
+                labels = ~ModeOfTransport,
+                values = ~numTrips,
+                type = 'pie') %>%
+          layout(
+            height = input$dimension[2]*0.3,
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor='rgba(0,0,0,0)',
+            title="Trips by Mode of Transport"
+          )
+        })
       
     }
   )
