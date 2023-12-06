@@ -110,7 +110,7 @@ tmp <- data %>%
 tmp %>% select(DayOfWeek, AvgDailyFare)
 
 # Trips per week
-tripsperweek <- data() %>%
+tripsperweek <- data %>%
   group_by(WeekEnding, WeekEnd) %>%
   summarize(
     numTrips = n_distinct(index)
@@ -125,9 +125,9 @@ tripsperweek <- data() %>%
            #height = input$dimension[2]*0.4,
            paper_bgcolor='rgba(0,0,0,0)',
            plot_bgcolor='rgba(0,0,0,0)',
-           title="Trips per week",
            xaxis = list(title = ""),
-           yaxis = list(title = ""))
+           yaxis = list(title = ""),
+           legend = list(orientation = 'h', x=0, y=100))
 
 
 # Trips by mode of transport

@@ -37,9 +37,9 @@ myserver <- function(input, output, session) {
                  height = input$dimension[2]*0.4,
                  paper_bgcolor='rgba(0,0,0,0)',
                  plot_bgcolor='rgba(0,0,0,0)',
-                 title="Trips per week",
                  xaxis = list(title = ""),
-                 yaxis = list(title = ""))
+                 yaxis = list(title = ""),
+                 legend = list(orientation = 'h', x=0, y=100))
       })
       
       #frequent trips
@@ -88,8 +88,7 @@ myserver <- function(input, output, session) {
           layout(
             height = input$dimension[2]*0.3,
             paper_bgcolor='rgba(0,0,0,0)',
-            plot_bgcolor='rgba(0,0,0,0)',
-            title="Trips by Mode of Transport"
+            plot_bgcolor='rgba(0,0,0,0)'
           )
         })
       

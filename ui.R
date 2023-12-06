@@ -2,6 +2,7 @@ library(plotly)
 library(DT)
 
 myUI <- fluidPage(
+  bootstrap = TRUE,
   style = "background-color: #F9F6EE;",
   
   title = "Go Card Travel History",
@@ -35,29 +36,54 @@ myUI <- fluidPage(
   ),
   fluidRow(class = "spacer", HTML("<br>")),
   fluidRow( class = "body",
-    column(8, #left side
+    column(style='border-left: 10px solid #F9F6EE; border-right: 5px solid #F9F6EE;',
+           8, #left side
+           fluidRow(
+             h6("Trips per week", align = 'Center'),
+             style = "background-color:white;"
+           ),
            fluidRow(
              #trips per week bar chart
              style='height:40vh',
              plotlyOutput("tripsPerWeek")
            ),
            fluidRow(
-             column(9,
+             column(style='border-right: 5px solid #F9F6EE;',
+                    9,
                     #frequent trips table
+                    fluidRow(
+                      h6("Frequent Trips", align = 'Center'),
+                      style = "background-color:white;"
+                    ),
                     DT::dataTableOutput("frequentTrips"),style = "overflow-y: scroll;overflow-x: scroll;font-size:80%"
              ),
-             column(3,
+             column(style='border-left: 5px solid #F9F6EE;',
+                    3,
                     #avg daily fare table (by day of week)
-                    tableOutput("AvgDailyFare")
+                    fluidRow(
+                      h6("Avg. Daily Fare", align = 'Center'),
+                      style = "background-color:white;"
+                    ),
+                    fluidRow(
+                    tableOutput("AvgDailyFare"))
              )
            )
     ),
     
-    column(4, #right side
+    column(style='border-right: 10px solid #F9F6EE; border-left: 5px solid #F9F6EE;',
+           4, #right side
+           fluidRow(
+             h6("Modes of Transport", align = 'Center'),
+             style = "background-color:white;"
+           ),
            fluidRow(
              #modes of transport pie chart
              style='height:30vh',
              plotlyOutput("modesofTransportPie")
+           ),
+           fluidRow(
+             h6("Departure Times Frequency", align = 'Center'),
+             style = "background-color:white;"
            ),
            fluidRow(
              #departure time by time of day
