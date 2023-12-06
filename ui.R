@@ -2,7 +2,6 @@ library(plotly)
 library(DT)
 
 myUI <- fluidPage(
-  bootstrap = TRUE,
   style = "background-color: #F9F6EE;",
   
   title = "Go Card Travel History",
@@ -22,41 +21,49 @@ myUI <- fluidPage(
                                 });
                             ')),
   
-  fluidRow( class="top banner row",
+  fluidRow( #header row
           style = "background-color:white;",
     column(6,
-    h2("Go Card Travel History", align = "left")),
+    div(style = "height:10vh;",
+    h2("Go Card Travel History", align = "left"))
+    ),
     column(4,
-    fileInput("inputFile", "Upload travel history csv", accept = ".csv")),
+    div(style = "height:10vh;",
+    fileInput("inputFile", "Upload travel history csv", accept = ".csv"))
+    ),
     column(2,
+    div(style = "height:10vh;",
     actionButton(
       inputId = "submit_file",
-      label = "Submit"
+      label = "Submit")
     ))
   ),
-  fluidRow(class = "spacer", HTML("<br>")),
-  fluidRow( class = "body",
+  fluidRow(class = "spacer", div(style = "height:1vh;")),
+  fluidRow( #body
     column(style='border-left: 10px solid #F9F6EE; border-right: 5px solid #F9F6EE;',
            8, #left side
+           div(style = "height:45vh;",
            fluidRow(
              h6("Trips per week", align = 'Center'),
              style = "background-color:white;"
            ),
            fluidRow(
              #trips per week bar chart
-             style='height:40vh',
-             plotlyOutput("tripsPerWeek")
+             plotlyOutput("tripsPerWeek"))
            ),
            fluidRow(
              column(style='border-right: 5px solid #F9F6EE;',
                     9,
+                    div(style="height=44vh",
                     #frequent trips table
                     fluidRow(
                       h6("Frequent Trips", align = 'Center'),
                       style = "background-color:white;"
                     ),
-                    DT::dataTableOutput("frequentTrips"),style = "overflow-y: scroll;overflow-x: scroll;font-size:80%"
-             ),
+                    DT::dataTableOutput("frequentTrips", height = "44vh"),
+                    style = "overflow-y: scroll;overflow-x: scroll;font-size:60%;",
+                    options = list(paging=F)
+             )),
              column(style='border-left: 5px solid #F9F6EE;',
                     3,
                     #avg daily fare table (by day of week)
