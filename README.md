@@ -10,14 +10,14 @@ This involved both re-creating the data cleaning (more info below) steps perform
 
 ![rShiny](images/screenshot.png)
 
-The final result, while not a fully complete recreation proved to be a challenge with displaying the data in the same way as power bi - working with a dataframe opposed to a data model of related tables.
+The final result, while not a fully complete re-creation, proved to be a challenge with displaying the data in the same way as power bi - working with a dataframe opposed to a data model of related tables.
 
-One key difference with the rShiny dashboard is ability for the report viewer to upload any input file (in the expected format) and for the data transformation steps to be automatically applied and displayed in the dashboard. As such, this allows for me to upload my project without revealing my own data as well as for others to download their own travel history from the translink website and upload it to the dashboard.
+One key difference with the rShiny dashboard is ability for the report viewer to upload any input file (in the expected format) and for the data transformation steps to be automatically applied and displayed in the dashboard. As such, this allows for me to upload my project without revealing my own data as well as for others to download their own travel history from the Translink website and upload it to the dashboard.
 
 #### Some key learnings from this project:
 * R is more suitable for statistical analysis
-* Power BI is my preferred tool for creating mroe interactive dashboards
-* rShiny is a lot more closely related to CSS than I anticpated
+* Power BI is my preferred tool for creating more interactive dashboards
+* rShiny is a lot more closely related to CSS than I anticipated
 * divs are my new best friend :)
 
 ### Data Cleaning
