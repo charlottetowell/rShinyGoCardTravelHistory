@@ -62,7 +62,7 @@ myUI <- fluidPage(
                     ),
                     DT::dataTableOutput("frequentTrips", height = "44vh"),
                     style = "overflow-y: scroll;overflow-x: scroll;font-size:60%;",
-                    options = list(paging=F)
+                    options = list(fillContainer = TRUE)
              )),
              column(style='border-left: 5px solid #F9F6EE;',
                     3,
